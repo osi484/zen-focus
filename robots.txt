@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zen-focus-bes.pages.dev/sitemap.xml

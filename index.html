@@ -3,23 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Zen Focus | 집중을 위한 공간</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 950 */
+            color: #f8fafc;
         }
-        h1 {
-            color: #333;
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        input::placeholder { color: rgba(255, 255, 255, 0.3); }
     </style>
 </head>
-<body>
-    <h1>Hello World</h1>
+<body class="min-height-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <header class="text-center space-y-2">
+            <h1 class="text-3xl font-light tracking-widest text-slate-200 uppercase">Zen Focus</h1>
+            <p class="text-slate-500 text-sm">고요함 속에서 몰입하세요.</p>
+        </header>
+
+        <!-- Timer Section -->
+        <section class="glass p-8 rounded-3xl shadow-2xl text-center space-y-6">
+            <div class="relative">
+                <div id="timer-display" class="text-7xl font-light tracking-tighter text-slate-100">25:00</div>
+                <div id="timer-label" class="text-xs text-slate-500 mt-2 uppercase tracking-widest">Focus Mode</div>
+            </div>
+
+            <div class="flex items-center justify-center gap-4">
+                <input type="number" id="minutes-input" value="25" min="1" max="999" 
+                    class="w-20 bg-slate-800/50 border border-slate-700 rounded-xl px-3 py-2 text-center text-xl focus:outline-none focus:border-slate-500 transition-colors">
+                <span class="text-slate-500">min</span>
+            </div>
+
+            <div class="flex gap-3">
+                <button id="start-btn" class="flex-1 bg-slate-100 text-slate-900 font-semibold py-4 rounded-2xl hover:bg-white transition-all active:scale-95">START</button>
+                <button id="reset-btn" class="px-6 bg-slate-800 text-slate-300 py-4 rounded-2xl hover:bg-slate-700 transition-all active:scale-95">RESET</button>
+            </div>
+
+            <!-- Sound Selection -->
+            <div class="flex items-center justify-between px-2 pt-4 border-t border-slate-700/50">
+                <span class="text-xs text-slate-500 uppercase tracking-widest">Ambient Sound</span>
+                <select id="sound-select" class="bg-transparent text-sm text-slate-300 focus:outline-none cursor-pointer">
+                    <option value="https://actions.google.com/sounds/v1/water/rain_on_roof.mp3">Soft Rain</option>
+                    <option value="https://actions.google.com/sounds/v1/weather/wind_heavy_swirl.mp3">Soft Wind</option>
+                    <option value="https://actions.google.com/sounds/v1/foley/static_noise.mp3">White Noise</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Todo/Notes Section -->
+        <section class="glass p-6 rounded-3xl shadow-xl space-y-4">
+            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-widest px-2">Tasks</h2>
+            
+            <div class="flex gap-2">
+                <input type="text" id="todo-input" placeholder="오늘 집중할 일은 무엇인가요?" 
+                    class="flex-1 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3 focus:outline-none focus:border-slate-500 transition-colors text-sm">
+                <button id="add-todo-btn" class="bg-slate-700 hover:bg-slate-600 px-4 rounded-xl transition-colors">+</button>
+            </div>
+
+            <ul id="todo-list" class="space-y-2 max-h-60 overflow-y-auto pr-2 custom-scrollbar">
+                <!-- Todos added here -->
+            </ul>
+        </section>
+
+        <footer class="text-center text-slate-600 text-xs tracking-wide">
+            &copy; 2024 Zen Focus. 정적인 몰입을 위한 도구.
+        </footer>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bg-audio" loop></audio>
+
+    <script>
+        // DOM Elements
+        const timerDisplay = document.getElementById('timer-display');
+        const minutesInput = document.getElementById('minutes-input');
+        const startBtn = document.getElementById('start-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const soundSelect = document.getElementById('sound-select');
+        const bgAudio = document.getElementById('bg-audio');
+        const todoInput = document.getElementById('todo-input');
+        const addTodoBtn = document.getElementById('add-todo-btn');
+        const todoList = document.getElementById('todo-list');
+
+        let timeLeft = 25 * 60;
+        let timerInterval = null;
+        let isRunning = false;
+
+        // --- Timer Logic ---
+        function updateDisplay() {
+            const m = Math.floor(timeLeft / 60);
+            const s = timeLeft % 60;
+            timerDisplay.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (isRunning) {
+                pauseTimer();
+                return;
+            }
+
+            // Audio setup on user interaction
+            if (bgAudio.src !== soundSelect.value) {
+                bgAudio.src = soundSelect.value;
+            }
+
+            isRunning = true;
+            startBtn.textContent = 'PAUSE';
+            startBtn.classList.replace('bg-slate-100', 'bg-slate-700');
+            startBtn.classList.replace('text-slate-900', 'text-slate-100');
+            
+            bgAudio.play().catch(e => console.log("Audio play blocked."));
+
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay();
+                } else {
+                    stopTimer(true);
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timerInterval);
+            startBtn.textContent = 'RESUME';
+            startBtn.classList.replace('bg-slate-700', 'bg-slate-100');
+            startBtn.classList.replace('text-slate-100', 'text-slate-900');
+            bgAudio.pause();
+        }
+
+        function stopTimer(finished = false) {
+            isRunning = false;
+            clearInterval(timerInterval);
+            bgAudio.pause();
+            bgAudio.currentTime = 0;
+            
+            if (finished) {
+                timeLeft = 0;
+                updateDisplay();
+                alert("집중 시간이 끝났습니다. 고생하셨습니다!");
+                resetTimer();
+            }
+        }
+
+        function resetTimer() {
+            stopTimer();
+            timeLeft = minutesInput.value * 60;
+            updateDisplay();
+            startBtn.textContent = 'START';
+            startBtn.classList.add('bg-slate-100', 'text-slate-900');
+            startBtn.classList.remove('bg-slate-700', 'text-slate-100');
+        }
+
+        // --- Todo Logic ---
+        let todos = JSON.parse(localStorage.getItem('zen-todos')) || [];
+
+        function saveTodos() {
+            localStorage.setItem('zen-todos', JSON.stringify(todos));
+        }
+
+        function renderTodos() {
+            todoList.innerHTML = '';
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.className = `flex items-center justify-between p-3 rounded-xl bg-slate-800/30 border border-slate-700/50 group animate-in slide-in-from-bottom-2 duration-300`;
+                li.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" ${todo.completed ? 'checked' : ''} 
+                            class="w-4 h-4 rounded border-slate-600 bg-transparent text-slate-400 focus:ring-0 cursor-pointer"
+                            onclick="toggleTodo(${index})">
+                        <span class="text-sm ${todo.completed ? 'line-through text-slate-600' : 'text-slate-300'}">${todo.text}</span>
+                    </div>
+                    <button onclick="removeTodo(${index})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all">&times;</button>
+                `;
+                todoList.appendChild(li);
+            });
+        }
+
+        window.toggleTodo = (index) => {
+            todos[index].completed = !todos[index].completed;
+            saveTodos();
+            renderTodos();
+        };
+
+        window.removeTodo = (index) => {
+            todos = todos.filter((_, i) => i !== index);
+            saveTodos();
+            renderTodos();
+        };
+
+        addTodoBtn.onclick = () => {
+            const text = todoInput.value.trim();
+            if (text) {
+                todos.push({ text, completed: false });
+                todoInput.value = '';
+                saveTodos();
+                renderTodos();
+            }
+        };
+
+        todoInput.onkeypress = (e) => { if (e.key === 'Enter') addTodoBtn.click(); };
+
+        // --- Initial Setup ---
+        minutesInput.onchange = () => {
+            if (!isRunning) {
+                timeLeft = minutesInput.value * 60;
+                updateDisplay();
+            }
+        };
+
+        startBtn.onclick = startTimer;
+        resetBtn.onclick = resetTimer;
+        
+        // 사운드 변경 시 즉시 반영 (재생 중일 때)
+        soundSelect.onchange = () => {
+            if (isRunning) {
+                bgAudio.src = soundSelect.value;
+                bgAudio.play();
+            }
+        };
+
+        renderTodos();
+        updateDisplay();
+    </script>
 </body>
 </html>

@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3239/3239147.png">
     <title>Zen Focus | 집중을 위한 공간</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -62,10 +65,10 @@
             </div>
         </header>
 
-        <!-- Focus Tip Area (ad-top was here) -->
+        <!-- Focus Tip Area -->
         <div class="w-full max-w-2xl glass py-4 px-6 rounded-2xl text-center flex items-center justify-center gap-3 group border-slate-800/30 hover:border-slate-700 transition-all duration-500 overflow-hidden" id="focus-tip-container">
-            <span class="text-[9px] text-slate-500 uppercase tracking-widest font-semibold border border-slate-700 px-2 py-0.5 rounded-md group-hover:text-slate-300 transition-colors">TIP</span>
-            <p id="focus-tip-text" class="text-xs md:text-sm font-light text-slate-400 group-hover:text-slate-200 transition-colors truncate"></p>
+            <span class="text-[9px] text-slate-500 uppercase tracking-widest font-semibold border border-slate-700 px-2 py-0.5 rounded-md group-hover:text-slate-300 transition-colors">TIP & QUOTE</span>
+            <p id="focus-tip-text" class="text-xs md:text-sm font-light text-slate-400 group-hover:text-slate-200 transition-colors truncate italic"></p>
         </div>
 
         <div class="w-full flex flex-col lg:flex-row gap-8 items-start justify-center">
@@ -239,27 +242,35 @@
         const modalContent = document.getElementById('modal-content');
         const focusTipText = document.getElementById('focus-tip-text');
 
-        // Focus Tips Data
+        // Focus Tips & Quotes Data
         const FOCUS_TIPS = {
             ko: [
                 "휴대폰을 다른 방에 두는 것만으로도 집중력이 올라갑니다.",
                 "뽀모도로 기법(25분 집중, 5분 휴식)을 사용해 보세요.",
                 "주변을 정리하면 뇌의 인지 부하가 줄어듭니다.",
                 "멀티태스킹은 집중력의 가장 큰 적입니다.",
-                "잠깐의 스트레칭은 뇌에 산소를 공급해 줍니다.",
+                "심호흡 3번으로 몰입을 시작해 보세요.",
+                "\"성공은 당신이 얼마나 집중할 수 있느냐에 달려 있다.\"",
+                "\"집중력은 지능보다 더 강력한 무기이다.\"",
+                "\"당신의 마음이 머무는 곳에 당신의 에너지가 흐른다.\"",
+                "\"몰입은 행복으로 가는 가장 빠른 길입니다.\"",
+                "\"작은 일에 집중하는 것이 위대한 일을 이루는 시작이다.\"",
                 "한 번에 오직 한 가지 일에만 몰입하세요.",
-                "적절한 수분 섭취는 뇌 기능을 활발하게 유지합니다.",
-                "심호흡 3번으로 몰입을 시작해 보세요."
+                "잠깐의 스트레칭은 뇌에 산소를 공급해 줍니다."
             ],
             en: [
                 "Keeping your phone in another room boosts concentration.",
                 "Try the Pomodoro technique (25m focus, 5m rest).",
                 "Decluttering your space reduces cognitive load on the brain.",
                 "Multitasking is the biggest enemy of deep focus.",
-                "Short stretching supplies oxygen to your brain.",
+                "Start your flow with three deep breaths.",
+                "\"Success is the result of your ability to focus.\"",
+                "\"Focus is a more powerful weapon than intelligence.\"",
+                "\"Where your mind goes, your energy flows.\"",
+                "\"Flow is the fastest path to happiness.\"",
+                "\"Focusing on small tasks is the start of achieving greatness.\"",
                 "Immerse yourself in only one task at a time.",
-                "Proper hydration keeps your brain functions active.",
-                "Start your flow with three deep breaths."
+                "Short stretching supplies oxygen to your brain."
             ]
         };
 
@@ -511,6 +522,15 @@
         updateFocusTip();
         renderTodos();
         updateDisplay();
+
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW error', err));
+            });
+        }
     </script>
 </body>
 </html>

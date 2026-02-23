@@ -2,12 +2,12 @@ class AmbientMixer extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        // 가장 안정적인 Google Actions 정식 MP3 리소스로 교체
+        // 신뢰할 수 있는 GitHub 오픈 소스 기반의 MP3 리소스로 전면 교체
         this.sounds = [
-            { id: 'rain', label: 'Soft Rain', url: 'https://actions.google.com/sounds/v1/water/rain_on_roof.mp3' },
-            { id: 'wind', label: 'Soft Wind', url: 'https://actions.google.com/sounds/v1/weather/wind_heavy_swirl.mp3' },
-            { id: 'forest', label: 'Nature Ambient', url: 'https://actions.google.com/sounds/v1/nature/forest_ambience.mp3' },
-            { id: 'white', label: 'White Noise', url: 'https://actions.google.com/sounds/v1/foley/static_noise.mp3' }
+            { id: 'rain', label: 'Soft Rain', url: 'https://raw.githubusercontent.com/Anuj-Kumar-Sharma/Zen-Mode/main/public/sounds/rain.mp3' },
+            { id: 'wind', label: 'Soft Wind', url: 'https://raw.githubusercontent.com/Anuj-Kumar-Sharma/Zen-Mode/main/public/sounds/wind.mp3' },
+            { id: 'forest', label: 'Nature Ambient', url: 'https://raw.githubusercontent.com/Anuj-Kumar-Sharma/Zen-Mode/main/public/sounds/forest.mp3' },
+            { id: 'waves', label: 'Deep Ocean', url: 'https://raw.githubusercontent.com/Anuj-Kumar-Sharma/Zen-Mode/main/public/sounds/waves.mp3' }
         ];
         this.audioElements = {};
     }
@@ -36,10 +36,10 @@ class AmbientMixer extends HTMLElement {
                 .play-pause {
                     background: none; border: none; color: var(--text-primary); cursor: pointer;
                     opacity: 0.3; transition: all 0.3s; display: flex; align-items: center;
-                    padding: 5px;
+                    padding: 8px; border-radius: 50%;
                 }
-                .play-pause.active { opacity: 1; color: var(--accent-forest); }
-                .play-pause svg { pointer-events: none; } /* 클릭 방해 방지 */
+                .play-pause.active { opacity: 1; color: var(--accent-forest); background: oklch(100% 0 0 / 0.05); }
+                .play-pause svg { pointer-events: none; }
             </style>
             <div class="mixer-grid">
                 ${this.sounds.map(sound => `
@@ -56,22 +56,23 @@ class AmbientMixer extends HTMLElement {
         this.setupEventListeners();
     }
 
-    // 오디오 객체 관리 및 에러 핸들링 강화
+    // 오디오 객체 생성 및 에러 처리 (클릭 시에만 호출됨)
     getOrCreateAudio(id) {
         if (!this.audioElements[id]) {
             const sound = this.sounds.find(s => s.id === id);
             const audio = new Audio();
+            
+            // CORS 에러 방지를 위해 crossOrigin 설정을 제거하거나 기본값으로 둡니다.
             audio.src = sound.url;
             audio.loop = true;
-            audio.crossOrigin = "anonymous"; // CORS 이슈 방지
             
             // 볼륨 설정
             const slider = this.shadowRoot.querySelector(`.volume-slider[data-id="${id}"]`);
             audio.volume = slider ? slider.value : 0.5;
 
-            audio.onerror = () => {
-                console.error(`사운드 로드 실패: ${sound.label}`);
-                alert(`${sound.label} 소리를 불러오는 데 실패했습니다. 네트워크 연결을 확인해 주세요.`);
+            // 상세 에러 로그 출력 (경고창 대신 콘솔에 출력하여 방해 최소화)
+            audio.onerror = (e) => {
+                console.error(`사운드 로드 실패 (${sound.label}):`, e);
             };
 
             this.audioElements[id] = audio;
@@ -81,7 +82,7 @@ class AmbientMixer extends HTMLElement {
 
     setupEventListeners() {
         this.shadowRoot.querySelectorAll('.play-pause').forEach(btn => {
-            btn.onclick = (e) => {
+            btn.onclick = () => {
                 const id = btn.dataset.id;
                 this.toggleSound(id, btn);
             };
@@ -101,18 +102,15 @@ class AmbientMixer extends HTMLElement {
         const audio = this.getOrCreateAudio(id);
 
         if (audio.paused) {
-            // 재생 시도 (Promise 처리)
+            // 버튼 클릭 시에만 재생 시작
             audio.play().then(() => {
                 btn.classList.add('active');
                 btn.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
             }).catch(err => {
-                console.warn("재생 실패:", err);
-                // 브라우저 정책 알림
-                if (err.name === 'NotAllowedError') {
-                    alert("브라우저 보안 정책에 따라, 페이지의 빈 공간을 아무 곳이나 한 번 클릭하신 후 다시 버튼을 눌러주세요.");
-                }
+                console.warn("재생 실패 (브라우저 정책):", err);
             });
         } else {
+            // 정지
             audio.pause();
             btn.classList.remove('active');
             btn.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';

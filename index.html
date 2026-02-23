@@ -25,11 +25,11 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
 
-    <!-- Language Toggle -->
-    <div class="fixed top-8 right-8 z-50">
-        <button id="lang-toggle" class="text-[10px] tracking-[0.3em] text-slate-500 hover:text-slate-200 transition-colors uppercase font-light">
+    <!-- Language Toggle (Bottom Right) -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button id="lang-toggle" class="glass px-4 py-2 rounded-full text-[10px] tracking-[0.2em] text-slate-500 hover:text-slate-200 transition-all uppercase font-light border border-slate-800/50 hover:border-slate-700">
             <span id="lang-ko" class="transition-all">KO</span>
-            <span class="mx-1 text-slate-700">|</span>
+            <span class="mx-2 text-slate-800">/</span>
             <span id="lang-en" class="transition-all">EN</span>
         </button>
     </div>
@@ -112,7 +112,7 @@
 
     <!-- Build Trigger: Updated with zen-focus rename 2026-02-23 -->
     <script>
-        const translations = {
+        const LANG_PACKAGE = {
             ko: {
                 todayFocus: "오늘 나의 집중: ",
                 minUnit: "분",
@@ -178,10 +178,10 @@
 
         // Language Logic
         let currentLang = localStorage.getItem('zen-lang') || 
-            (navigator.language.startsWith('ko') ? 'ko' : 'en');
+            (window.navigator.language.startsWith('ko') ? 'ko' : 'en');
 
         function applyTranslations() {
-            const t = translations[currentLang];
+            const t = LANG_PACKAGE[currentLang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (t[key]) el.textContent = t[key];
@@ -211,7 +211,7 @@
             currentLang = currentLang === 'ko' ? 'en' : 'ko';
             localStorage.setItem('zen-lang', currentLang);
             applyTranslations();
-            renderTodos(); // Refresh list if needed
+            renderTodos();
         };
 
         // Stats Logic
@@ -232,7 +232,7 @@
             
             if (Notification.permission === "granted") {
                 new Notification("Zen Focus", { 
-                    body: translations[currentLang].notificationBody, 
+                    body: LANG_PACKAGE[currentLang].notificationBody, 
                     icon: "/favicon.ico" 
                 });
             } else if (Notification.permission !== "denied") {

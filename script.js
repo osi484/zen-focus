@@ -21,43 +21,43 @@ const LANG_PACKAGE = {
         footerAttribution: "본 서비스의 음원은 공유마당의 자유이용 저작물을 활용하였습니다.",
         popupMessage: "고생하셨습니다! 잠시 휴식하세요. ✨",
         notificationBody: "고생하셨습니다! 잠시 휴식하세요.",
-                        infoTitle1: "백색소음의 과학적 효과",
-                        infoText1: "백색소음(White Noise)은 모든 주파수 대역에서 일정한 에너지를 가진 소리로, 주변의 불필요한 소음을 차단하는 '마스킹 효과'를 제공합니다. 연구에 따르면 일정한 배경 소음은 뇌의 알파파를 자극하여 심리적 안정감을 주고 깊은 몰입 상태로 유도하는 데 도움을 줍니다.",
-                        infoTitle2: "뽀모도로 기법 사용 설명서",
-                        infoText2: "뽀모도로(Pomodoro) 기법은 25분간의 강도 높은 집중과 5분간의 짧은 휴식을 반복하는 방법입니다. 인간의 집중력 한계를 고려한 이 리듬은 뇌의 피로를 방지하고 시간 사용의 효율성을 극대화합니다. Zen Focus 타이머를 활용해 당신만의 완벽한 몰입 루틴을 만들어보세요.",
-                        infoTitle3: "딥 워크를 위한 환경 설정",
-                        infoText3: "몰입(Deep Work)을 위해서는 감각의 통제가 필수적입니다. 20-22도의 적절한 온도, 간접 조명을 활용한 시각적 안정, 그리고 스마트폰 알림 차단은 기본입니다. 여기에 Zen Focus의 백색소음을 더해 청각적 커튼을 친다면, 당신의 뇌는 즉시 고도의 집중 상태에 진입할 준비를 마칠 것입니다."
-                    },
-                    en: {
-                        todayFocus: "Today's Focus: ",
-                        minUnit: " min",
-                        minUnitLabel: "min",
-                        focusMode: "Focus Mode",
-                        start: "START",
-                        pause: "PAUSE",
-                        resume: "RESUME",
-                        reset: "RESET TIMER",
-                        volume: "Volume",
-                        soundscape: "Soundscape",
-                        soundRain: "Soft Rain",
-                        soundForest: "Deep Forest",
-                        soundCampfire: "Crackling Campfire",
-                        soundOcean: "Gentle Ocean",
-                        rituals: "Daily Rituals",
-                        clearCompleted: "Clear Completed",
-                        todoPlaceholder: "Record today's flow...",
-                        footerSub: "Minimalist Flow Tool.",
-                        footerAttribution: "Audio assets provided by Gong-yu Madang (Open License).",
-                        popupMessage: "Well done! Take a break. ✨",
-                        notificationBody: "Well done! Take a break.",
-                        infoTitle1: "The Science of White Noise",
-                        infoText1: "White noise is a sound that contains every frequency at a consistent intensity, providing a 'masking effect' that blocks distracting background noise. Research suggests that a steady stream of ambient sound can stimulate alpha waves in the brain, promoting psychological stability and facilitating deep focus.",
-                        infoTitle2: "Pomodoro Technique Guide",
-                        infoText2: "The Pomodoro Technique is a time management method that involves 25 minutes of intense focus followed by a 5-minute break. This rhythm, designed around human attention spans, prevents mental fatigue and maximizes productivity. Use Zen Focus to build your own perfect flow routine.",
-                        infoTitle3: "Setting Environment for Deep Work",
-                        infoText3: "To achieve Deep Work, controlling your sensory environment is crucial. Maintaining a room temperature of 20-22°C, using soft indirect lighting, and eliminating digital distractions are the fundamentals. By adding Zen Focus's ambient sounds as an 'auditory curtain,' your brain will be primed for high-level concentration."
-                    }
-                };
+        infoTitle1: "백색소음의 과학적 효과",
+        infoText1: "백색소음(White Noise)은 모든 주파수 대역에서 일정한 에너지를 가진 소리로, 주변의 불필요한 소음을 차단하는 '마스킹 효과'를 제공합니다. 연구에 따르면 일정한 배경 소음은 뇌의 알파파를 자극하여 심리적 안정감을 주고 깊은 몰입 상태로 유도하는 데 도움을 줍니다.",
+        infoTitle2: "뽀모도로 기법 사용 설명서",
+        infoText2: "뽀모도로(Pomodoro) 기법은 25분간의 강도 높은 집중과 5분간의 짧은 휴식을 반복하는 방법입니다. 인간의 집중력 한계를 고려한 이 리듬은 뇌의 피로를 방지하고 시간 사용의 효율성을 극대화합니다. Zen Focus 타이머를 활용해 당신만의 완벽한 몰입 루틴을 만들어보세요.",
+        infoTitle3: "딥 워크를 위한 환경 설정",
+        infoText3: "몰입(Deep Work)을 위해서는 감각의 통제가 필수적입니다. 20-22도의 적절한 온도, 간접 조명을 활용한 시각적 안정, 그리고 스마트폰 알림 차단은 기본입니다. 여기에 Zen Focus의 백색소음을 더해 청각적 커튼을 친다면, 당신의 뇌는 즉시 고도의 집중 상태에 진입할 준비를 마칠 것입니다."
+    },
+    en: {
+        todayFocus: "Today's Focus: ",
+        minUnit: " min",
+        minUnitLabel: "min",
+        focusMode: "Focus Mode",
+        start: "START",
+        pause: "PAUSE",
+        resume: "RESUME",
+        reset: "RESET TIMER",
+        volume: "Volume",
+        soundscape: "Soundscape",
+        soundRain: "Soft Rain",
+        soundForest: "Deep Forest",
+        soundCampfire: "Crackling Campfire",
+        soundOcean: "Gentle Ocean",
+        rituals: "Daily Rituals",
+        clearCompleted: "Clear Completed",
+        todoPlaceholder: "Record today's flow...",
+        footerSub: "Minimalist Flow Tool.",
+        footerAttribution: "Audio assets provided by Gong-yu Madang (Open License).",
+        popupMessage: "Well done! Take a break. ✨",
+        notificationBody: "Well done! Take a break.",
+        infoTitle1: "The Science of White Noise",
+        infoText1: "White noise is a sound that contains every frequency at a consistent intensity, providing a 'masking effect' that blocks distracting background noise. Research suggests that a steady stream of ambient sound can stimulate alpha waves in the brain, promoting psychological stability and facilitating deep focus.",
+        infoTitle2: "Pomodoro Technique Guide",
+        infoText2: "The Pomodoro Technique is a time management method that involves 25 minutes of intense focus followed by a 5-minute break. This rhythm, designed around human attention spans, prevents mental fatigue and maximizes productivity. Use Zen Focus to build your own perfect flow routine.",
+        infoTitle3: "Setting Environment for Deep Work",
+        infoText3: "To achieve Deep Work, controlling your sensory environment is crucial. Maintaining a room temperature of 20-22°C, using soft indirect lighting, and eliminating digital distractions are the fundamentals. By adding Zen Focus's ambient sounds as an 'auditory curtain,' your brain will be primed for high-level concentration."
+    }
+};
 const timerDisplay = document.getElementById('timer-display');
 const minutesInput = document.getElementById('minutes-input');
 const startBtn = document.getElementById('start-btn');
@@ -84,11 +84,11 @@ const FOCUS_TIPS = {
         "주변을 정리하면 뇌의 인지 부하가 줄어듭니다.",
         "멀티태스킹은 집중력의 가장 큰 적입니다.",
         "심호흡 3번으로 몰입을 시작해 보세요.",
-        ""성공은 당신이 얼마나 집중할 수 있느냐에 달려 있다."",
-        ""집중력은 지능보다 더 강력한 무기이다."",
-        ""당신의 마음이 머무는 곳에 당신의 에너지가 흐른다."",
-        ""몰입은 행복으로 가는 가장 빠른 길입니다."",
-        ""작은 일에 집중하는 것이 위대한 일을 이루는 시작이다."",
+        "'성공은 당신이 얼마나 집중할 수 있느냐에 달려 있다.'",
+        "'집중력은 지능보다 더 강력한 무기이다.'",
+        "'당신의 마음이 머무는 곳에 당신의 에너지가 흐른다.'",
+        "'몰입은 행복으로 가는 가장 빠른 길입니다.'",
+        "'작은 일에 집중하는 것이 위대한 일을 이루는 시작이다.'",
         "한 번에 오직 한 가지 일에만 몰입하세요.",
         "잠깐의 스트레칭은 뇌에 산소를 공급해 줍니다."
     ],
@@ -98,11 +98,11 @@ const FOCUS_TIPS = {
         "Decluttering your space reduces cognitive load on the brain.",
         "Multitasking is the biggest enemy of deep focus.",
         "Start your flow with three deep breaths.",
-        ""Success is the result of your ability to focus."",
-        ""Focus is a more powerful weapon than intelligence."",
-        ""Where your mind goes, your energy flows."",
-        ""Flow is the fastest path to happiness."",
-        ""Focusing on small tasks is the start of achieving greatness."",
+        "'Success is the result of your ability to focus.'",
+        "'Focus is a more powerful weapon than intelligence.'",
+        "'Where your mind goes, your energy flows.'",
+        "'Flow is the fastest path to happiness.'",
+        "'Focusing on small tasks is the start of achieving greatness.'",
         "Immerse yourself in only one task at a time.",
         "Short stretching supplies oxygen to your brain."
     ]
@@ -361,27 +361,49 @@ function resetTimer() {
 // Todo Logic
 let todos = JSON.parse(localStorage.getItem('zen-todos')) || [];
 function saveTodos() { localStorage.setItem('zen-todos', JSON.stringify(todos)); }
-function renderTodos() {
-    todoList.innerHTML = '';
-    const sortedTodos = [...todos].sort((a, b) => a.completed - b.completed);
-    
-    sortedTodos.forEach((todo, index) => {
-        const originalIndex = todos.indexOf(todo);
-        const li = document.createElement('li');
-        li.className = `flex items-center justify-between p-4.5 md:p-4 rounded-2xl bg-slate-800/10 border border-slate-800/30 group hover:border-slate-700 transition-all ${todo.completed ? 'opacity-60' : ''}`;
-        li.innerHTML = `
-            <div class="flex items-center gap-4 flex-1 cursor-pointer py-1" onclick="toggleTodo(${originalIndex})">
-                <div class="w-6 h-6 md:w-5 md:h-5 rounded-full border border-slate-600 flex items-center justify-center transition-all ${todo.completed ? 'bg-slate-400 border-slate-400' : 'group-hover:border-slate-400'}">
-                    ${todo.completed ? '<svg class="w-3.5 h-3.5 md:w-3 md:h-3 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>' : ''}
-                </div>
-                <span class="text-[15px] md:text-sm font-light transition-all ${todo.completed ? 'line-through text-slate-500' : 'text-slate-300'}">${todo.text}</span>
-            </div>
-            <button onclick="removeTodo(${originalIndex})" class="text-slate-700 hover:text-red-400 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all px-3 py-2 text-xl md:text-base leading-none">&times;</button>
-        `;
-        todoList.appendChild(li);
-    });
-}
-
+        function renderTodos() {
+            todoList.innerHTML = '';
+            const sortedTodos = [...todos].sort((a, b) => a.completed - b.completed);
+            
+            sortedTodos.forEach((todo, index) => {
+                const originalIndex = todos.indexOf(todo);
+                const li = document.createElement('li');
+                li.className = `flex items-center justify-between p-4.5 md:p-4 rounded-2xl bg-slate-800/10 border border-slate-800/30 group hover:border-slate-700 transition-all ${todo.completed ? 'opacity-60' : ''}`;
+                
+                // Create content container
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'flex items-center gap-4 flex-1 cursor-pointer py-1';
+                contentDiv.onclick = () => toggleTodo(originalIndex);
+                
+                // Checkbox circle
+                const checkCircle = document.createElement('div');
+                checkCircle.className = `w-6 h-6 md:w-5 md:h-5 rounded-full border border-slate-600 flex items-center justify-center transition-all ${todo.completed ? 'bg-slate-400 border-slate-400' : 'group-hover:border-slate-400'}`;
+                if (todo.completed) {
+                    checkCircle.innerHTML = '<svg class="w-3.5 h-3.5 md:w-3 md:h-3 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>';
+                }
+                
+                // Todo text
+                const span = document.createElement('span');
+                span.className = `text-[15px] md:text-sm font-light transition-all ${todo.completed ? 'line-through text-slate-500' : 'text-slate-300'}`;
+                span.textContent = todo.text; // Safe from XSS
+                
+                contentDiv.appendChild(checkCircle);
+                contentDiv.appendChild(span);
+                
+                // Remove button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'text-slate-700 hover:text-red-400 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all px-3 py-2 text-xl md:text-base leading-none';
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    removeTodo(originalIndex);
+                };
+                
+                li.appendChild(contentDiv);
+                li.appendChild(deleteBtn);
+                todoList.appendChild(li);
+            });
+        }
 window.toggleTodo = (index) => { todos[index].completed = !todos[index].completed; saveTodos(); renderTodos(); };
 window.removeTodo = (index) => { todos = todos.filter((_, i) => i !== index); saveTodos(); renderTodos(); };
 

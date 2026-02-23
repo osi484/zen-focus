@@ -1,7 +1,9 @@
-const CACHE_NAME = 'zen-focus-v2';
+const CACHE_NAME = 'zen-focus-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './style.css',
+  './script.js',
   './manifest.json',
   './assets/rain.mp3',
   './assets/Ambience.mp3',

@@ -90,10 +90,14 @@
         const startBtn = document.getElementById('start-btn');
         const resetBtn = document.getElementById('reset-btn');
         const soundSelect = document.getElementById('sound-select');
+        const volumeSlider = document.getElementById('volume-slider');
         const bgAudio = document.getElementById('bg-audio');
         const todoInput = document.getElementById('todo-input');
         const addTodoBtn = document.getElementById('add-todo-btn');
         const todoList = document.getElementById('todo-list');
+
+        // 초기 볼륨 설정
+        bgAudio.volume = 0.3;
 
         let timeLeft = 25 * 60;
         let timerInterval = null;

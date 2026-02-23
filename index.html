@@ -281,7 +281,7 @@
 
             isRunning = true;
             originalTime = minutesInput.value * 60;
-            startBtn.textContent = translations[currentLang].pause;
+            startBtn.textContent = LANG_PACKAGE[currentLang].pause;
             startBtn.classList.replace('bg-slate-100', 'bg-slate-800');
             startBtn.classList.replace('text-slate-900', 'text-slate-100');
             
@@ -302,7 +302,7 @@
         function pauseTimer() {
             isRunning = false;
             clearInterval(timerInterval);
-            startBtn.textContent = translations[currentLang].resume;
+            startBtn.textContent = LANG_PACKAGE[currentLang].resume;
             startBtn.classList.replace('bg-slate-800', 'bg-slate-100');
             startBtn.classList.replace('text-slate-100', 'text-slate-900');
             bgAudio.pause();
@@ -325,7 +325,7 @@
             stopTimer();
             timeLeft = minutesInput.value * 60;
             updateDisplay();
-            startBtn.textContent = translations[currentLang].start;
+            startBtn.textContent = LANG_PACKAGE[currentLang].start;
             startBtn.classList.remove('bg-slate-800', 'text-slate-100');
             startBtn.classList.add('bg-slate-100', 'text-slate-900');
         }
@@ -384,5 +384,5 @@
         renderTodos();
         updateDisplay();
     </script>
-</body></body>
+</body>
 </html>
